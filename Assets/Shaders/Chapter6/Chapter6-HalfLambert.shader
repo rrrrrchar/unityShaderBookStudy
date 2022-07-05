@@ -1,8 +1,9 @@
 ﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
+//半兰伯特
 Shader "Unity Shaders Book/Chapter 6/Half Lambert" {
 	Properties {
+		//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
 	}
 	SubShader {
@@ -49,8 +50,10 @@ Shader "Unity Shaders Book/Chapter 6/Half Lambert" {
 				fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
 				
 				// Compute diffuse term
+				//半兰伯特计算
 				fixed halfLambert = dot(worldNormal, worldLightDir) * 0.5 + 0.5;
-				fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * halfLambert;
+				//计算漫反射
+				fixed3 diffuse =  _LightColor0.rgb * _Diffuse.rgb * halfLambert;
 				
 				fixed3 color = ambient + diffuse;
 				

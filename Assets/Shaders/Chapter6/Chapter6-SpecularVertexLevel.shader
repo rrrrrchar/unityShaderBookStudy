@@ -1,11 +1,14 @@
 ﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
+//逐顶点光照，也是phong光照模型
 Shader "Unity Shaders Book/Chapter 6/Specular Vertex-Level" {
 	Properties {
+		//漫反射属性
 		_Diffuse ("Diffuse", Color) = (1, 1, 1, 1)
+		//高光反射颜色
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
+		//高光区域的大小
 		_Gloss ("Gloss", Range(8.0, 256)) = 20
 	}
 	SubShader {
@@ -32,7 +35,7 @@ Shader "Unity Shaders Book/Chapter 6/Specular Vertex-Level" {
 				float4 pos : SV_POSITION;
 				fixed3 color : COLOR;
 			};
-			
+			//计算包含高光反射的光照模型
 			v2f vert(a2v v) {
 				v2f o;
 				// Transform the vertex from object space to projection space
